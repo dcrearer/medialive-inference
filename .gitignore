@@ -27,3 +27,12 @@ lambda/**/target/
 # AI-DLC
 .kiro/
 aidlc-docs/
+
+# Rust build artifacts
+tools/*/target/
+cmaf-output/
+clip-60s.mp4
+
+# CMAF test assets (keep README only)
+cmaf-test/*
+!cmaf-test/README.md
