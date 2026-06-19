@@ -28,7 +28,7 @@ class MediaLiveStack(cdk.Stack):
         # --- IAM Role ---
         medialive_role = iam.Role(
             self,
-            "MediaLiveRole",
+            "MediaLiveRoleV2",
             assumed_by=iam.ServicePrincipal("medialive.amazonaws.com"),
             inline_policies={
                 "MediaLiveAccess": iam.PolicyDocument(
@@ -36,9 +36,7 @@ class MediaLiveStack(cdk.Stack):
                         iam.PolicyStatement(
                             actions=[
                                 "medialive:*",
-                                "elemental-inference:AssociateFeed",
-                                "elemental-inference:DisassociateFeed",
-                                "elemental-inference:GetFeed",
+                                "elemental-inference:*",
                                 "logs:CreateLogGroup",
                                 "logs:CreateLogStream",
                                 "logs:PutLogEvents",

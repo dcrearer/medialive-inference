@@ -13,7 +13,8 @@ class InferenceStack(cdk.Stack):
         # Smart cropping is NOT defined here — MediaLive will manage the
         # cropping output automatically when the channel is linked via InferenceSettings.
         self.feed = elementalinference.CfnFeed(
-            self, "InferenceFeed",
+            self,
+            "InferenceFeed",
             name="medialive-inference-feed",
             outputs=[
                 {
@@ -24,6 +25,16 @@ class InferenceStack(cdk.Stack):
                         # callbackMetadata is included in the EventBridge event for each clip
                         "clipping": {
                             "callbackMetadata": "medialive-clip-event",
+                        },
+                    },
+                },
+                {
+                    "name": "smart-subtitles",
+                    "description": "TTML subtitles from audio in your source media",
+                    "status": "ENABLED",
+                    "outputConfig": {
+                        "subtitling": {
+                            "language": "eng-us",
                         },
                     },
                 },
